@@ -1,0 +1,325 @@
+create database adidb;
+use adidb;
+create table actor(act_id int primary key,act_fname char(20),act_lname char(20),act_gender char(1));
+desc actor;
+create table director(dir_id int primary key,dir_fname char(20),dir_lname char(20));
+desc director;
+create table movie(mov_id int primary key,mov_title char(50),mov_year int,mov_time int,mov_lang char(50),mov_dt_rel date,mov_rel_country char(5));
+desc movie;
+create table movie_cast(act_id int,mov_id int, role char(30), foreign key (act_id) references actor(act_id),foreign key (mov_id) references movie(mov_id));
+desc movie_cast;
+create table movie_direction(dir_id int,mov_id int,foreign key (dir_id) references director(dir_id), foreign key(mov_id) references movie(mov_id));
+desc movie_direction;
+create table reviewer(rev_id int primary key, rev_name char(20));
+desc reviewer;
+create table genres(gen_id int primary key,gen_title char(20));
+desc genres;
+create table mov_genres(mov_id int,gen_id int, foreign key (mov_id) references movie(mov_id),foreign key (gen_id) references genres(gen_id));
+desc mov_genres;
+create table rating(mov_id int,rev_id int, rev_stars int, num_o_ratings int,foreign key (mov_id) references movie(mov_id), foreign key (rev_id) references reviewer(rev_id));
+desc rating;
+
+desc actor;
+insert into actor values(101,'James','Stewart','M');
+select * from actor;
+insert into actor values(102,'Deborah','Kerr','F');
+insert into actor values(103,'Peter','Otoole','M');
+insert into actor values(104,'Robert','De niro','M');
+insert into actor values(105,'F Murray','Abraham','M');
+insert into actor values(106,'Harisson','Ford','M');
+insert into actor values(107,'Nicole','Kidman','M');
+insert into actor values(108,'Stephen','Baldwin','M');
+insert into actor values(109,'Jack','Nicholson','M');
+insert into actor values(110,'Mark','Wahlberg','M');
+insert into actor values(111,'Woody','Allen','M');
+insert into actor values(112,'Claire','Danes','F');
+insert into actor values(113,'Tim','Robbins','M');
+insert into actor values(114,'Kevin','Spacey','M');
+insert into actor values(115,'Kate','Winslet','F');
+insert into actor values(116,'Robbin','Williams','M');
+insert into actor values(117,'Jon','Voight','M');
+insert into actor values(118,'Ewan','Mcgregor','M');
+insert into actor values(119,'Christian','Bale','M');
+insert into actor values(120,'Maggie','Gyllenhaal','F');
+insert into actor values(121,'Dev','Patel','M');
+insert into actor values(122,'Sigourney','Weaver','F');
+insert into actor values(123,'David','Aston','M');
+insert into actor values(124,'Ali','Astin','F');
+select * from actor;
+
+desc director;
+insert into director values(201,'Alfred','Hitchcock');
+insert into director values(202,'Jack','Clayton');
+insert into director values(203,'David','Lean');
+insert into director values(204,'Michael','Cimino');
+insert into director values(205,'Milos','Forman');
+insert into director values(206,'Ridley','Scott');
+insert into director values(207,'Stanley','Kubrik');
+insert into director values(208,'Bryan','Singer');
+insert into director values(209,'Roman','Polanski');
+insert into director values(210,'Paul','Thomas Anderson');
+insert into director values(211,'Woody','Allen');
+insert into director values(212,'Hayao','Mikazaki');
+insert into director values(213,'Frank','Darabont');
+insert into director values(214,'Sam','Mendes');
+insert into director values(215,'James','Cameron');
+insert into director values(216,'Gus','Van sant');
+insert into director values(217,'John','Boorman');
+insert into director values(218,'Danny','Boyle');
+insert into director values(219,'Christopher','Nolan');
+insert into director values(220,'Richard','Kelly');
+insert into director values(221,'Kevin','Spacey');
+insert into director values(222,'Andrei','Takovsky');
+insert into director values(223,'Peter','Jackson');
+select * from director;
+
+desc movie;
+insert into movie values(901,'Vertigo',1958,128,'English','19580824','UK');
+select * from movie;
+insert into movie values(902,'The innocents',1961,100,'English','19620219','Sw');
+insert into movie values(903,'Lawrence of arabia',1962,216,'English','19621211','UK');
+insert into movie values(904,'The deer hunter',1978,183,'English','19790308','UK');
+insert into movie values(905,'Amadeus',1984,160,'English','19850107','UK');
+insert into movie values(906,'Blade runner',1982,117,'English','19820909','UK');
+insert into movie values(907,'Eyes wide shut',1999,159,'English',null,'UK');
+insert into movie values(908,'The usual Suspects',1995,106,'English','19950825','UK');
+insert into movie values(909,'Chinatown',1974,130,'English','19740809','UK');
+insert into movie values(910,'Boogie Nights',1997,155,'English','19980216','UK');
+insert into movie values(911,'Annie Hall',1977,93,'English','19770420','USA');
+insert into movie values(912,'Princess monokonke',1997,134,'Japanese','20011019','UK');
+insert into movie values(913,'The Shawshank Redemption',1994,142,'English','19950217','UK');
+insert into movie values(914,'American beauty',1999,122,'English',null,'UK');
+insert into movie values(915,'Titanic',1997,194,'English','19980123','UK');
+insert into movie values(916,'Good Will Hunting',1997,126,'English','19980603','UK');
+insert into movie values(917,'Deliverance',1972,109,'English','19821005','UK');
+insert into movie values(918,'Trainspotting',1996,94,'English','19960223','UK');
+insert into movie values(919,'The Prestige',2006,130,'English','20061110','UK');
+insert into movie values(920,'Donnie Darko',2001,113,'English',null,'UK');
+insert into movie values(921,'Slumdog millionaire',2008,120,'English','20090109','UK');
+insert into movie values(922,'Aliens',1986,137,'English','19860929','UK');
+insert into movie values(923,'Beyond The Sea',2004,118,'English','20041126','UK');
+insert into movie values(924,'Avatar',2009,162,'English',null,'UK');
+insert into movie values(926,'Seven Samurai',1954,207,'Japanese','19540426','JP');
+insert into movie values(927,'Spirited Away',2001,125,'Japanese','20030912','UK');
+insert into movie values(928,'BAck to the future',1985,116,'English','19851204','UK');
+insert into movie values(925,'BraveHeart',1995,178,'English','19950908','UK');
+select * from movie;
+
+desc reviewer;
+insert into reviewer values(9001,'Righty sock');
+insert into reviewer values(9002,'Jack Malvern');
+insert into reviewer values(9003,'Flagrant Baronessia');
+insert into reviewer values(9004,'Alec Shaw');
+insert into reviewer values(9005,null);
+insert into reviewer values(9006,'Viictor Woeltjen');
+insert into reviewer values(9007,'Simon Wright');
+insert into reviewer values(9008,'Neal Wruck');
+insert into reviewer values(9009,'Paul monks');
+insert into reviewer values(9010,'Mike salvati');
+insert into reviewer values(9011,null);
+insert into reviewer values(9012,'Wesley S Walker');
+insert into reviewer values(9013,'Sasha Goldstein');
+insert into reviewer values(9014,'Josh Cates');
+insert into reviewer values(9015,'Krug Stillo');
+insert into reviewer values(9016,'Scott LeBrun');
+insert into reviewer values(9017,'Hannah steele');
+insert into reviewer values(9018,'Vincent Cadena');
+insert into reviewer values(9019,'Brandt Sponsellor');
+insert into reviewer values(9020,'Richard Adams');
+select * from reviewer;
+
+desc genres;
+insert into genres values(1001,'Action');
+insert into genres values(1002,'Adventure');
+insert into genres values(1003,'Animation');
+insert into genres values(1004,'Biography');
+insert into genres values(1005,'Comedy');
+insert into genres values(1006,'Crime');
+insert into genres values(1007,'Drama');
+insert into genres values(1008,'Horror');
+insert into genres values(1009,'Music');
+insert into genres values (1010,'Mystery');
+insert into genres values(1011,'Romance');
+insert into genres values(1012,'Thriller');
+insert into genres values(1013,'War');
+select * from genres;
+
+
+desc movie_direction;
+insert into movie_direction values(201,901);
+insert into movie_direction values(202,902);
+insert into movie_direction values(203,903);
+insert into movie_direction values(204,904);
+insert into movie_direction values(205,905);
+insert into movie_direction values(206,906);
+insert into movie_direction values(207,907);
+insert into movie_direction values(208,908);
+insert into movie_direction values(209,909);
+insert into movie_direction values(210,910);
+insert into movie_direction values(211,911);
+insert into movie_direction values(212,912);
+insert into movie_direction values(213,913);
+insert into movie_direction values(214,914);
+insert into movie_direction values(215,915);
+insert into movie_direction values(216,916);
+insert into movie_direction values(217,917);
+insert into movie_direction values(218,918);
+insert into movie_direction values(219,919);
+insert into movie_direction values(220,920);
+insert into movie_direction values(218,921);
+insert into movie_direction values(215,922);
+insert into movie_direction values(221,923);
+select * from movie_direction;
+desc movie_direction;
+
+desc mov_genres;
+insert into mov_genres values(922,1001);
+insert into mov_genres values(917,1002);
+insert into mov_genres values(903,1002);
+insert into mov_genres values(912,1003);
+insert into mov_genres values(911,1005);
+insert into mov_genres values(908,1006);
+insert into mov_genres values(913,1006);
+insert into mov_genres values(926,1007);
+insert into mov_genres values(928,1007);
+insert into mov_genres values(918,1007);
+insert into mov_genres values(921,1007);
+insert into mov_genres values(902,1008);
+insert into mov_genres values(923,1009);
+insert into mov_genres values(907,1010);
+insert into mov_genres values(927,1010);
+insert into mov_genres values(901,1001);
+insert into mov_genres values(914,1011);
+insert into mov_genres values(906,1012);
+insert into mov_genres values(904,1013);
+select * from mov_genres;
+
+desc rating;
+insert into rating values(901,9001,8.4,263575);
+insert into rating values(902,9002,7.9,20207);
+insert into rating values(903,9003,8.3,202778);
+insert into rating values(906,9005,8.2,484746);
+insert into rating values(924,9006,7.3,null);
+insert into rating values(908,9007,8.6,779489);
+insert into rating values(909,9008,null,227235);
+insert into rating values(910,9009,3,195961);
+insert into rating values(911,9010,8.1,203875);
+insert into rating values(912,9011,8.4,null);
+insert into rating values(914,9013,7,862618);
+insert into rating values(915,9001,7.7,830095);
+insert into rating values(916,9014,4,642132);
+insert into rating values(925,9015,7.7,81328);
+insert into rating values(918,9016,null,580301);
+insert into rating values(920,9017,8.1,609451);
+insert into rating values(921,9018,8,667758);
+insert into rating values(922,9019,8.4,511613);
+insert into rating values(923,9020,6.7,13091);
+select * from rating;
+
+desc movie_cast;
+insert into movie_cast values(101,901,'John Scottie Ferguson');
+insert into movie_cast values(102,902,'MissGiddens');
+insert into movie_cast values(103,903,'T E lawrence');
+insert into movie_cast values(104,904,'Michael');
+insert into movie_cast values(105,905,'Antonio Salieri');
+insert into movie_cast values(106,906,'Rick deckard');
+insert into movie_cast values(107,907,'Alice harford');
+insert into movie_cast values(108,908,'Mcmanus');
+insert into movie_cast values(110,910,'Eddie adams');
+insert into movie_cast values(111,911,'Alvy singer');
+insert into movie_cast values(112,912,'San');
+insert into movie_cast values(113,913,'Andy Dufresne');
+insert into movie_cast values(114,914,'Lester burham');
+insert into movie_cast values(115,915,'Rose dewitt bukater');
+insert into movie_cast values(116,916,'Sean Maguire');
+insert into movie_cast values(117,917,'Ed');
+insert into movie_cast values(118,918,'Renton');
+insert into movie_cast values(120,920,'Elizebath Darko');
+insert into movie_cast values(121,921,'Older jamal');
+insert into movie_cast values(122,922,'Ripley');
+insert into movie_cast values(114,923,'Bobby Darin');
+insert into movie_cast values(109,909,'J J Gittes');
+insert into movie_cast values(119,919,'Alfred Borden');
+select * from movie_cast;
+desc movie_cast;
+
+select mov_title from movie 
+INNER JOIN mov_genres mg
+ON movie.mov_id = mg.mov_id
+INNER JOIN genres g
+ON mg.gen_id = g.gen_id
+WHERE g.gen_id = 1008; 
+
+
+select * from rating;
+desc movie;
+alter table rating 
+modify rev_stars decimal(8,2);
+desc rating;
+select * from rating;
+delete from rating; 
+
+
+select a.act_id,a.act_fname,a.act_lname,a.act_gender,mo.mov_title from actor a 
+INNER JOIN movie_cast m
+ON a.act_id = m.act_id
+INNER JOIN movie mo
+ON mo.mov_id = m.mov_id
+Where mo.mov_title = 'Deliverance';
+
+select dir_fname,dir_lname from director 
+where dir_id IN ( 
+select dir_id from movie_direction 
+where mov_id IN (
+select mov_id from movie
+where mov_title = 'Eyes wide shut'));
+desc director;
+
+SELECT mov_title, mov_year, mov_dt_rel, dir_fname, dir_lname, act_fname, act_lname
+FROM movie m, movie_direction md, director d, rating ra, reviewer r, actor a, movie_cast mc
+WHERE m.mov_id=md.mov_id
+AND md.dir_id=d.dir_id 
+AND m.mov_id=ra.mov_id 
+AND ra.rev_id=r.rev_id 
+AND m.mov_id=mc.mov_id 
+AND mc.act_id=a.act_id 
+AND r.rev_name ='Neal Wruck';
+
+Select DISTINCT mov_year 
+FROM movie 
+WHERE mov_id IN 
+( SELECT mov_id 
+FROM rating 
+WHERE rev_stars>4 ) 
+ORDER BY mov_year;
+
+SELECT re.rev_name as REVIEVER,m.mov_title as MOVIENAME
+FROM movie m
+INNER JOIN rating r
+ON r.mov_id = m.mov_id
+INNER JOIN reviewer re
+ON re.rev_id = r.rev_id
+WHERE r.rev_stars IS NULL;
+
+select m.mov_title,d.dir_fname,d.dir_lname 
+FROM movie m
+INNER JOIN movie_direction md
+ON m.mov_id = md.mov_id
+INNER JOIN director d
+ON d.dir_id = md.dir_id
+WHERE d.dir_fname = 'David';
+
+select a.act_fname,a.act_lname,mc.role,m.mov_title
+FROM actor a 
+INNER JOIN movie_cast mc
+ON a.act_id = mc.act_id
+INNER JOIN movie m 
+ON m.mov_id = mc.mov_id
+WHERE m.mov_title='Boogie Nights';
+
+select mov_title from movie 
+INNER JOIN mov_genres mg
+ON movie.mov_id = mg.mov_id
+INNER JOIN genres g
+ON mg.gen_id = g.gen_id
+WHERE g.gen_title='Horror';
