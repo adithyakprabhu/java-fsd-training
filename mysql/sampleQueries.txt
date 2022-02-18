@@ -1,0 +1,47 @@
+create database adithyadb;
+use adithyadb;
+CREATE TABLE EMP(emp_id int NOT NULL,emp_name varchar(20), age int);
+select * from EMP;
+INSERT INTO EMP VALUES(1,'adi',22);
+select * from EMP;
+ALTER TABLE EMP add primary key(emp_id);
+UPDATE EMP SET age=23 where emp_id=1;
+Insert into emp values(2,'David',29);
+Insert into emp values(3,'Militao',24);
+Insert into emp values(4,'Benzema',34);
+Insert into emp values(5,'Vinicius',21);
+
+select * from emp;
+update emp set age = 21 where emp_id = 5;
+Create Table location(emp_id int, place varchar(20));
+insert into location values(1,'India');
+insert into location values(2,'Austria');
+insert into location values(3,'Brazil');
+insert into location values(4,'France');
+Insert into location values(5,'Brazil');
+select * from location;
+
+select * from emp where age>22; 
+select * from emp where emp_name like 'A%';
+select * from emp where emp_id IN (
+select emp_id from location where place = 'Brazil');
+
+insert into location values(6,'England');
+select * from location;
+update location set place = 'Europe' where emp_id = 2;
+delete from location where emp_id = 6;
+
+alter table emp 
+add salary int;
+desc emp;
+update emp set salary = 9000 where emp_id=1;
+update emp set salary = 7000 where emp_id=2;
+update emp set salary = 8000 where emp_id=3;
+update emp set salary =6000 where emp_id=4;
+update emp set salary = 9500 where emp_id=5;
+
+select * from emp;
+select max(salary) as 'HIGHEST SALARY' from emp ;
+select avg(salary) as 'AVG SALARY' from emp;
+select * from emp order by emp_name;
+select count(*) from location where place ='Brazil';
