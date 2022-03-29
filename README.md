@@ -1,3 +1,3 @@
 # java-fsd-training
-This repository is based on the training done in Java FSD Training.
-Includes Java Basics,Spring,Spring Boots, Data Structures, Mysql, Mongodb, Skill Based Assessments.
+This repository is based on the training done in Java FSD.
+Includes Java Basics,Spring,Spring Boot,Maven,Microservices,Servlets,Data Structures, Mysql, Mongodb,HTML,CSS,Bootstrap,JavaScript,TypeScript,Node,Angular, Skill Based Assessments.
