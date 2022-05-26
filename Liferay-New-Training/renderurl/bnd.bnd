@@ -1,0 +1,4 @@
+Bundle-Name: renderurl
+Bundle-SymbolicName: renderurl
+Bundle-Version: 1.0.0
+Export-Package: renderurl.constants
