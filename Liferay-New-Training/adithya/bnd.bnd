@@ -1,0 +1,4 @@
+Bundle-Name: adithya
+Bundle-SymbolicName: adithya
+Bundle-Version: 1.0.0
+Export-Package: adithya.constants
